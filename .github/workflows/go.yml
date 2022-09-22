@@ -15,11 +15,11 @@ jobs:
       uses: actions/checkout@v3
     
     - name: get short sha
-      id: get sha
+      id: get_short_sha
       run: echo ::set-output name=VERSION::$(git rev-parse --short HEAD)
     
     - name: echo sha
-      run: echo ${{ steps.get_version.outputs.VERSION }}
+      run: echo ${{ steps.get_short_sha.outputs.VERSION }}
 
     # - name: Set up Go
     #   uses: actions/setup-go@v3
