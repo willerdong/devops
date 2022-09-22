@@ -33,4 +33,4 @@ jobs:
       uses: docker/build-push-action@v3
       with:
         push: true
-        tags: ${{ secrets.DOCKER_REGISTRY }}/willerdong/devops:${{ SHORT_SHA }}
+        tags: ${{ secrets.DOCKER_REGISTRY }}/willerdong/devops:${SHORT_SHA}
