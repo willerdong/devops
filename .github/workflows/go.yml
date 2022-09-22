@@ -26,11 +26,11 @@ jobs:
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
 
-    - name: Add SHORT_SHA env property with commit short sha
-      run: echo "SHORT_SHA=`echo ${GITHUB_SHA} | cut -c1-8`" >> $GITHUB_ENV
+    - name: Set outputs
+      run: echo "::set-output name=sha_short::$(git rev-parse --short HEAD)"
 
     - name: Build and push
       uses: docker/build-push-action@v3
       with:
         push: true
-        tags: ${{ secrets.DOCKER_REGISTRY }}/willerdong/devops:${SHORT_SHA}
+        tags: ${{ secrets.DOCKER_REGISTRY }}/willerdong/devops:${{ steps.vars.outputs.sha_short }}
